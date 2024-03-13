@@ -57,7 +57,8 @@ body {
 #nav-bar ul li {
     display: inline-block;
 }
-#nav-bar ul li a {
+#nav-bar ul li a,
+#nav-bar ul li span {
     display: block;
     padding: 15px;
     text-decoration: none;
@@ -110,20 +111,12 @@ nav.fill ul .dropdown-content a:hover {
 }
 
 /* Show dropdown on hover */
-nav.fill ul #home-dropdown:hover #home-dropdown-content {
+nav.fill ul #menu-dropdown:hover #menu-dropdown-content {
     display: block;
     text-align: center;
     font-size: small;
     z-index: 110;
-    width: 10%;
-}
-
-/* Show dropdown on hover */
-nav.fill ul #donate-dropdown:hover #donate-dropdown-content {
-    display: block;
-    text-align: center;
-    z-index: 110;
-    width: 10%;
+    width: fit-content;
 }
 
 nav ul li a,
@@ -161,6 +154,11 @@ nav.fill ul li a:hover:after {
     -webkit-animation: fill 1s forwards;
     -moz-animation: fill 1s forwards;
     opacity: 1;
+}
+
+nav.fill ul li[tabindex]:hover .dropdown-content,
+nav.fill ul li[tabindex]:focus .dropdown-content {
+    display: block;
 }
 
 main {
