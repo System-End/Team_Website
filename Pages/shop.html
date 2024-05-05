@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/Resources/Favicons/favicon.png"
+        />
+        <link rel="stylesheet" href="/Pages/style.css" />
+        <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+                fetch("/Pages/navbar.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("navbar").innerHTML = data;
+                    });
+                fetch("/Pages/socials.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("socials").innerHTML = data;
+                    });
+            });
+        </script>
+    </head>
+
+    <body>
+        <!--Navigation Bar-->
+        <div id="navbar"></div>
+
+        <!-- Body -->
+        <div class="Title-Container">
+            <h1 class="page-title" style="width: 100%; text-align: center">
+                Shop
+            </h1>
+            <img
+                src="/Resources/Icons/team-icon.png"
+                id="TeamIcon"
+                alt="Team Icon"
+            />
+        </div>
+
+        <div class="UnderConstruction">
+            This section is under construction...
+        </div>
+        <script>
+            var stripe = Stripe(
+              "sk_test_51PBMFWCZYaFRUYezJHsiqgp6BHarFfhZjlNkDT8MNnxSOpCe3pDR427dyqYJMmEIF5JRe6aQc16KxHK3euoMZ9de00r03MbmAR"
+            );
+            var checkoutButton = document.getElementById("checkout-button");
+            checkoutButton.addEventListener("click", function () {
+              var hoodieSize = document.getElementById("hoodie-size").value;
+              var hoodieQuantity = parseInt(
+                document.getElementById("hoodie-quantity").value
+              );
+              var tshirtSize = document.getElementById("tshirt-size").value;
+              var tshirtQuantity = parseInt(
+                document.getElementById("tshirt-quantity").value
+              );
+              var totalPrice = hoodieQuantity * 45 + tshirtQuantity * 15;
+  
+              // Create a Stripe Checkout session
+              stripe.redirectToCheckout({
+                items: [
+                  {
+                    sku: "sku_HOODIE",
+                    quantity: hoodieQuantity,
+                    size: hoodieSize,
+                  },
+                  {
+                    sku: "sku_TSHIRT",
+                    quantity: tshirtQuantity,
+                    size: tshirtSize,
+                  },
+                ],
+                successUrl: "https://yourwebsite.com/success",
+                cancelUrl: "https://yourwebsite.com/cancel",
+                clientReferenceId: "unique_id", // optional
+                payment_method_types: ["card"],
+                mode: "payment",
+                lineItems: [
+                  {
+                    quantity: hoodieQuantity,
+                    price: "price_HOODIE",
+                    description: "Hoodie - " + hoodieSize,
+                  },
+                  {
+                    quantity: tshirtQuantity,
+                    price: "price_TSHIRT",
+                    description: "T-Shirt - " + tshirtSize,
+                  },
+                ],
+                submit_type: "pay",
+              });
+            });
+          </script>
+        <!-- Footer -->
+        <div id="socials"></div>
+    </body>
+</html>
