@@ -16,6 +16,7 @@ html {
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
+    height: 0px;
 }
 
 /* Handle */
@@ -34,7 +35,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100vw);
     margin: 0;
     background-color: #f1f1f1;
 }
@@ -44,10 +45,11 @@ body {
     position: fixed;
     z-index: 110;
     background-color: #f1f1f1;
-    width: 100%;
+    width: calc(100vw);
     border-bottom: 1px solid;
     border-bottom-color: #000;
     margin: 0;
+    font-size: 1rem;
 }
 #nav-bar::after {
     color: #000;
@@ -83,7 +85,7 @@ body {
     content: "";
 }
 #nav-logo {
-    width: 3.5%;
+    width: calc(3.5vw);
     vertical-align: middle;
     padding-right: 30%;
     display: none;
@@ -119,7 +121,7 @@ nav.fill ul #home-dropdown:hover #home-dropdown-content {
     text-align: center;
     font-size: small;
     z-index: 110;
-    width: 10%;
+    width: calc(10vw);
 }
 
 /* Show dropdown on hover */
@@ -127,7 +129,7 @@ nav.fill ul #donate-dropdown:hover #donate-dropdown-content {
     display: block;
     text-align: center;
     z-index: 110;
-    width: 10%;
+    width: calc(10vw);
 }
 
 /* Show dropdown on hover */
@@ -135,7 +137,7 @@ nav.fill ul #Accomplishments-dropdown:hover #Accomplishments-dropdown-content {
     display: block;
     text-align: center;
     z-index: 110;
-    width: 10%;
+    width: calc(10vw);
 }
 
 nav ul li a,
@@ -182,6 +184,7 @@ nav.fill ul li[tabindex]:focus .dropdown-content {
 
 main {
     padding-top: 25px;
+    width: 100%;
     background-color: #f1f1f1;
     z-index: 100;
 }
@@ -193,21 +196,26 @@ main {
     justify-content: center;
     /*height: calc(100vw*0.664179104);*/
     height: calc(100vh);
+    width: calc(100vw);
 }
 
 .logo-container #Logo-Image {
     position: fixed;
     z-index: 80;
-    width: 50%;
+    width: auto;
+    height: auto;
+    max-width: calc(60vw);
+    max-height: calc(40vh);
 }
 
 .logo-container #Background-Image {
     position: fixed;
     z-index: 50;
-    width: 100%;
-    height: 100%;
+    width: calc(100vw);
+    height: calc(100vh);
     object-fit: cover;
     object-position: bottom;
+    overflow-x: hidden;
 }
 
 #Background-Image {
@@ -236,7 +244,8 @@ main {
 #about-us-image {
     padding-left: 10%;
     padding-right: 10%;
-    width: 35%;
+    width: calc(35vw);
+    height: calc(35vh);
 }
 #about-us-text {
     text-align: center;
@@ -246,10 +255,11 @@ main {
 /* Projects */
 #Rhino-2024 {
     justify-content: right;
+    width: calc(100vw);
 }
 #projects-image-Rhino-2024 {
-    height: 60%;
-    width: calc(60vh * 1.02327961);
+    height: calc(30vw);
+    width: calc(60vh);
     padding-right: 10%;
     padding-left: 10%;
     margin-bottom: 20px;
@@ -319,6 +329,54 @@ main {
     padding-top: 50px;
     background-color: #e1e1e1;
     display: flex;
+}   
+
+.social-icons {
+    position: relative;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px; /* Optional, for rounded corners */
+}
+
+.icon {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.icon i {
+  margin-right: 5px;
+}
+
+.icon:hover {
+  background-color: #333;
+  border-color: #fff;
+}
+
+.newsletter {
+  background-color: #007bff;
+}
+
+.instagram {
+  background-color: #e4405f;
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.gmail {
+  background-color: #db4437;
 }
 
 .social-icons {
@@ -333,29 +391,11 @@ main {
     border-radius: 5px; /* Optional, for rounded corners */
 }
 
-.social-icons ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Displays the icons in a row */
-}
-
-.social-icons ul li {
-    margin-right: 10px; /* Adds some space between icons */
-}
-
-.social-icons ul li:last-child {
-    margin-right: 0; /* Removes margin from the last icon */
-}
-
-.social-icons ul li a img {
-    width: 30px; /* Adjusts the size of the icons */
-    height: auto;
-    transition: transform 0.3s ease; /* Smooth scaling effect on hover */
-}
-
-.social-icons ul li a:hover img {
-    transform: scale(1.1); /* Scales the icon on hover */
+.instagram .fab {
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /*Mobile*/
