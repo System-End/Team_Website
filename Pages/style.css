@@ -183,7 +183,6 @@ nav.fill ul li[tabindex]:focus .dropdown-content {
 }
 
 main {
-    padding-top: 25px;
     width: 100%;
     background-color: #f1f1f1;
     z-index: 100;
@@ -242,31 +241,40 @@ main {
 
 /* About Us */
 #about-us-image {
-    padding-left: 10%;
-    padding-right: 10%;
-    width: calc(35vw);
-    height: calc(35vh);
+    width: 80%;
+    max-width: 600px;
+    height: 80%;
+    padding-left: 30px;
+    padding-right: 30px;
 }
+
 #about-us-text {
+    padding-right: 30px;
     text-align: center;
-    padding-right: 5%;
 }
 
 /* Projects */
 #Rhino-2024 {
-    justify-content: right;
     width: calc(100vw);
 }
 #projects-image-Rhino-2024 {
-    height: calc(30vw);
-    width: calc(60vh);
-    padding-right: 10%;
-    padding-left: 10%;
+    width: 80%;
+    max-width: 700px;
+    height: 80%;
     margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#projects {
+    text-align: center;
+    padding-left: 30px;
 }
 
 .text-image-chunk {
+    align-items: center;
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .text-image-chunk p {
@@ -406,7 +414,7 @@ main {
 }
 
 /*Mobile*/
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
     /* comes into effect for screens larger than or equal to 481 pixels */
     .ourStory-Container {
         display: flex;
@@ -432,10 +440,23 @@ main {
         margin-right: 5%;
         font-size: 15px;
     }
+
+    .text-image-chunk {
+        flex-wrap: wrap;
+    }
+
+    #about-us-image {
+        padding-bottom: 30px;
+    }
+
+    #about-us-text, #projects {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 /*Desktop*/
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1001px) {
     .ourStory-Container {
         display: flex;
         align-items: center;
@@ -459,6 +480,18 @@ main {
     }
 }
 
+@media screen and (max-width: 500px) {
+    #head-mentors ul,
+    #officers ul {
+        grid-template-columns: repeat(1, 1fr); /* 2 columns */
+    }   
+
+    #mentors-1 ul,
+    #captains ul {
+        grid-template-columns: repeat(1, 1fr); /* 2 columns */
+    }
+}
+
 /* Other Pages */
 
 body .Title-Container {
@@ -477,7 +510,8 @@ body .Title-Container {
 }
 
 body .Title-Container #TeamIcon {
-    width: 7%;
+    max-width: 100px;
+    width: 30%;
     display: block;
 }
 
@@ -541,10 +575,11 @@ h2 {
 }
 
 #sponsorship-packet {
-    display: block;
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -553,6 +588,10 @@ h2 {
 #sponsorship-packet p {
     font-size: 20;
     font-weight: 500;
+}
+
+#sponsorship-packet iframe {
+    width: 100%;
 }
 
 .UnderConstruction {
