@@ -1,41 +1,104 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<head>
-    <link
-        rel="icon"
-        type="image/x-icon"
-        href="/Resources/Favicons/favicon.png"
-    />
-    <link rel="stylesheet" href="/Pages/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+    <head>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/Resources/Favicons/favicon.png"
+        />
+        <link rel="stylesheet" href="/Pages/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script>
-        window.addEventListener("DOMContentLoaded", (event) => {
-            fetch("/Pages/navbar.html")
-                .then((response) => response.text())
-                .then((data) => {
-                    document.getElementById("navbar").innerHTML = data;
-                });
-            fetch("/Pages/socials.html")
-                .then((response) => response.text())
-                .then((data) => {
-                    document.getElementById("socials").innerHTML = data;
-                });
-        });
-    </script>
-</head>
-<body>
-    <!--Navigation Bar-->
-    <div id="navbar"></div>
-    <h1></h1>
-    <h1></h1>
-    <h1>Upload Photos and Videos</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="file" id="fileInput" multiple />
-        <button type="submit">Upload</button>
-    </form>
+        <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+                fetch("/Pages/navbar.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("navbar").innerHTML = data;
+                    });
+                fetch("/Pages/socials.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("socials").innerHTML = data;
+                    });
+            });
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Image Uploader</title>
+        <style>
+            .container {
+                margin: 50px auto;
+                width: 80%;
+                text-align: center;
+            }
+            .upload-btn {
+                padding: 10px 20px;
+                background-color: #c5203d;
+                color: #000;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            .up-btn {
+                padding: 10px 20px;
+                background-color: #c5203d;
+                color: #000;
+                cursor: pointer;
+                border-radius: 0px;
+            }
+            input[type="file"] {
+                display: none;
+            }
+            #uploaded-image {
+                max-width: 500px;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <div id="navbar"></div>
 
-    <script src="/Pages/upload.js"></script>
+        <div class="container">
+            <h2>Image Uploader</h2>
+            <form
+                action="/uploaded.html"
+                method="post"
+                enctype="multipart/form-data"
+            >
+                <label for="file-upload" class="upload-btn">Choose Image</label>
+                <input
+                    type="file"
+                    id="file-upload"
+                    name="file"
+                    accept="image/*"
+                />
+                <br />
+                <button type="submit" class="up-btn">Upload</button>
+            </form>
+            <div id="image-preview">
+                <h3>Uploaded Image:</h3>
+                <img id="uploaded-image" src="#" alt="Uploaded Image" />
+            </div>
+        </div>
+        <script>
+            document
+                .getElementById("file-upload")
+                .addEventListener("change", function (event) {
+                    const fileInput = event.target;
+                    const file = fileInput.files[0];
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        const imagePreview =
+                            document.getElementById("uploaded-image");
+                        imagePreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
+        </script>
+    </body>
     <!-- Footer -->
     <div id="socials"></div>
-</body>
+</html>
