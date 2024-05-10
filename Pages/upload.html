@@ -29,13 +29,22 @@
     <div id="navbar"></div>
     <h1></h1>
     <h1></h1>
-    <h1>Upload Photos and Videos</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="file" id="fileInput" multiple />
-        <button type="submit">Upload</button>
-    </form>
+    <a
+        href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
+    client_id=c91a3691-c800-4aed-9e85-1a2c896327de
+    &response_type=code
+    &grant_type=authorization_code
+    &redirect_uri=http://localhost:5500/Pages/Callback.html
+    &scope=openid%20offline_access%20Files.ReadWrite.All"
+        target="_blank"
+    >
+        Click here to sign in with Microsoft
+    </a>
+    <h1>Upload Photos to OneDrive</h1>
+    <input type="file" id="fileInput" accept="image/*" />
+    <button id="uploadButton">Upload</button>
 
-    <script src="/Pages/upload.js"></script>
+    <script src="upload.js"></script>
     <!-- Footer -->
     <div id="socials"></div>
 </body>
