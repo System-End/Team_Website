@@ -413,7 +413,7 @@ main {
     background-color: #c5203d;
     color: #000;
     cursor: pointer;
-    border-radius: 0px;
+    border-radius: 2.5px;
 }
 input[type="file"] {
     display: none;
