@@ -406,14 +406,14 @@ main {
     color: #000;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 5px; /* Optional, for rounded corners */
 }
 .up-btn {
     padding: 10px 20px;
     background-color: #c5203d;
     color: #000;
     cursor: pointer;
-    border-radius: 2.5px;
+    border-radius: 5px; /* Optional, for rounded corners */
 }
 input[type="file"] {
     display: none;

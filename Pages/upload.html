@@ -43,11 +43,13 @@
         </div>
     </div>
     <script>
+        //This is the upload function
+        var f;
         document.getElementById('file-upload').addEventListener('change', function(event) {
             const fileInput = event.target;
             const file = fileInput.files[0];
             const reader = new FileReader();
-
+            f = file;
             reader.onload = function(e) {
                 const imagePreview = document.getElementById('uploaded-image');
                 imagePreview.src = e.target.result;
