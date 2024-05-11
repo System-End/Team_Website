@@ -394,6 +394,35 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
+/*Upload Page*/
+.container {
+    margin: 50px auto;
+    width: 80%;
+    text-align: center;
+}
+.upload-btn {
+    padding: 10px 20px;
+    background-color: #c5203d;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.up-btn {
+    padding: 10px 20px;
+    background-color: #c5203d;
+    color: #000;
+    cursor: pointer;
+    border-radius: 0px;
+}
+input[type="file"] {
+    display: none;
+}
+#uploaded-image {
+    max-width: 500px;
+    margin-top: 20px;
+}
+
 /*Mobile*/
 @media screen and (max-width: 1200px) {
     /* comes into effect for screens larger than or equal to 481 pixels */
