@@ -23,12 +23,14 @@
             });
 
             function signInWithMicrosoft() {
-                window.location.href =
+                window.open(
                     "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?" +
-                    "client_id=c91a3691-c800-4aed-9e85-1a2c896327de" + // Replace with your client ID
-                    "&response_type=code" +
-                    "&redirect_uri=http://localhost:5500/Pages/upload.html" + // Replace with your redirect URI
-                    "&scope=openid%20offline_access%20Files.ReadWrite.All";
+                        "client_id=c91a3691-c800-4aed-9e85-1a2c896327de" + // Replace with your client ID
+                        "&response_type=code" +
+                        "&redirect_uri=http://localhost:5500/Pages/Callback.html" + // Replace with your redirect URI
+                        "&scope=openid%20offline_access%20Files.ReadWrite.All",
+                    "_blank"
+                );
             }
 
             function uploadFile() {
