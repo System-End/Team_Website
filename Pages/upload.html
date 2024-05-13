@@ -1,50 +1,130 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<head>
-    <link
-        rel="icon"
-        type="image/x-icon"
-        href="/Resources/Favicons/favicon.png"
-    />
-    <link rel="stylesheet" href="/Pages/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+    <head>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/Resources/Favicons/favicon.png"
+        />
+        <link rel="stylesheet" href="/Pages/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+                fetch("/Pages/navbar.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("navbar").innerHTML = data;
+                    });
+                fetch("/Pages/socials.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("socials").innerHTML = data;
+                    });
+            });
 
-    <script>
-        window.addEventListener("DOMContentLoaded", (event) => {
-            fetch("/Pages/navbar.html")
-                .then((response) => response.text())
-                .then((data) => {
-                    document.getElementById("navbar").innerHTML = data;
-                });
-            fetch("/Pages/socials.html")
-                .then((response) => response.text())
-                .then((data) => {
-                    document.getElementById("socials").innerHTML = data;
-                });
-        });
-    </script>
-</head>
-<body>
-    <!--Navigation Bar-->
-    <div id="navbar"></div>
-    <h1></h1>
-    <h1></h1>
-    <a
-        href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
-    client_id=c91a3691-c800-4aed-9e85-1a2c896327de
-    &response_type=code
-    &grant_type=authorization_code
-    &redirect_uri=http://localhost:5500/Pages/Callback.html
-    &scope=openid%20offline_access%20Files.ReadWrite.All"
-        target="_blank"
-    >
-        Click here to sign in with Microsoft
-    </a>
-    <h1>Upload Photos to OneDrive</h1>
-    <input type="file" id="fileInput" accept="image/*" />
-    <button id="uploadButton">Upload</button>
+            function signInWithMicrosoft() {
+                window.location.href =
+                    "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?" +
+                    "client_id=c91a3691-c800-4aed-9e85-1a2c896327de" + // Replace with your client ID
+                    "&response_type=code" +
+                    "&redirect_uri=http://localhost:5500/Pages/upload.html" + // Replace with your redirect URI
+                    "&scope=openid%20offline_access%20Files.ReadWrite.All";
+            }
 
-    <script src="upload.js"></script>
-    <!-- Footer -->
-    <div id="socials"></div>
-</body>
+            function uploadFile() {
+                var fileInput = document.getElementById("fileInput");
+                var file = fileInput.files[0];
+                if (file) {
+                    var formData = new FormData();
+                    formData.append("file", file);
+
+                    // Include access token in the request header
+                    var accessToken =
+                        document.getElementById("accessToken").value; // Access token obtained after authentication
+                    fetch(
+                        "https://graph.microsoft.com/v1.0/me/drive/root:/Photos/" +
+                            file.name +
+                            ":/content",
+                        {
+                            method: "PUT",
+                            body: formData,
+                            headers: {
+                                Authorization: "Bearer " + accessToken,
+                            },
+                        }
+                    )
+                        .then((response) => {
+                            if (response.ok) {
+                                alert("File uploaded successfully!");
+                            } else {
+                                alert("Error uploading file!");
+                            }
+                        })
+                        .catch((error) => console.error("Error:", error));
+                } else {
+                    alert("Please select a file to upload.");
+                }
+            }
+
+            // Function to preview the selected image
+            function previewImage() {
+                var fileInput = document.getElementById("fileInput");
+                var file = fileInput.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById("previewImage").src =
+                            e.target.result;
+                        document.getElementById("previewImage").style.display =
+                            "block";
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <div id="navbar"></div>
+        <h1>Upload Photos to OneDrive</h1>
+        <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            onchange="previewImage()"
+        />
+        <button onclick="uploadFile()">Upload</button>
+        <img id="previewImage" style="display: none; max-width: 300px" />
+        <a href="#" onclick="signInWithMicrosoft()"
+            >Click here to sign in with Microsoft</a
+        >
+
+        <!-- Access Token Field (Hidden) -->
+        <input type="hidden" id="accessToken" />
+
+        <!-- Script to Get Access Token from Callback URL -->
+        <script>
+            // Function to parse URL parameters
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return "";
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            // Get the access token from the URL and store it
+            var accessToken = getParameterByName("code");
+            if (accessToken) {
+                document.getElementById("accessToken").value = accessToken;
+                // Optionally, you can automatically trigger the file upload here
+                // uploadFile();
+            }
+        </script>
+
+        <!-- Footer -->
+        <div id="socials"></div>
+    </body>
+</html>
