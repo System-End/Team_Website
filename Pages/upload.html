@@ -8,6 +8,39 @@
         />
         <link rel="stylesheet" href="/Pages/style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <div id="navbar"></div>
+        <h1></h1>
+        <h1>Upload Photos</h1>
+
+        <button
+            class="button-style"
+            onclick="document.getElementById('fileInput').click()"
+        >
+            Choose File to Upload
+        </button>
+        <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            style="display: none"
+            onchange="previewImage()"
+        />
+        <button class="button-style" onclick="uploadFile()">Send</button>
+        <img id="previewImage" style="display: none; max-width: 300px" />
+
+        <button class="button-style" onclick="signInWithMicrosoft()">
+            Click here to sign in with Microsoft
+        </button>
+
+        <!-- Access Token Field (Hidden) -->
+        <input type="hidden" id="accessToken" />
+
+        <!-- Footer -->
+        <div id="socials"></div>
+
         <script>
             window.addEventListener("DOMContentLoaded", (event) => {
                 fetch("/Pages/navbar.html")
@@ -84,53 +117,5 @@
                 }
             }
         </script>
-    </head>
-    <body>
-        <!--Navigation Bar-->
-        <div id="navbar"></div>
-        <h1></h1>
-        <h1>Upload Photos</h1>
-
-        <button for="fileInput" class = ".upload-btn">Choose File to Upload</button>
-        <input
-            type="file"
-            id="fileInput"
-            accept="image/*"
-            style="display: none"
-            onchange="previewImage()"
-        />
-        <button onclick="uploadFile()">Send</button>
-        <img id="previewImage" style="display: none; max-width: 300px" />
-        <a href="#" onclick="signInWithMicrosoft()"
-            ><button>Click here to sign in with Microsoft</button></a
-        >
-
-        <!-- Access Token Field (Hidden) -->
-        <input type="hidden" id="accessToken" />
-
-        <!-- Script to Get Access Token from Callback URL -->
-        <script>
-            // Function to parse URL parameters
-            function getParameterByName(name, url) {
-                if (!url) url = window.location.href;
-                name = name.replace(/[\[\]]/g, "\\$&");
-                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                    results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return "";
-                return decodeURIComponent(results[2].replace(/\+/g, " "));
-            }
-
-            // Get the access token from the URL and store it
-            var accessToken = getParameterByName("code");
-            if (accessToken) {
-                document.getElementById("accessToken").value = accessToken;
-                // Optionally, you can automatically trigger the file upload here
-                // uploadFile();
-            }
-        </script>
-
-        <!-- Footer -->
-        <div id="socials"></div>
     </body>
 </html>

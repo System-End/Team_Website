@@ -471,7 +471,8 @@ input[type="file"] {
         padding-bottom: 30px;
     }
 
-    #about-us-text, #projects {
+    #about-us-text,
+    #projects {
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -506,7 +507,7 @@ input[type="file"] {
     #head-mentors ul,
     #officers ul {
         grid-template-columns: repeat(1, 1fr); /* 2 columns */
-    }   
+    }
 
     #mentors-1 ul,
     #captains ul {
@@ -792,7 +793,6 @@ input[type="submit"]:hover {
     }
 }*/
 
-
 /*Upload Page*/
 .container {
     margin: 50px auto;
@@ -800,6 +800,7 @@ input[type="submit"]:hover {
     text-align: center;
 }
 .upload-btn {
+    display: inline-block;
     padding: 10px 20px;
     background-color: #c5203d;
     color: #000;
@@ -808,9 +809,11 @@ input[type="submit"]:hover {
     border-radius: 5px; /* Optional, for rounded corners */
 }
 .up-btn {
+    display: inline-block;
     padding: 10px 20px;
     background-color: #c5203d;
     color: #000;
+    border: none;
     cursor: pointer;
     border-radius: 5px; /* Optional, for rounded corners */
 }
@@ -820,4 +823,24 @@ input[type="file"] {
 #uploaded-image {
     max-width: 500px;
     margin-top: 20px;
+}
+
+/* Style the button to look like a file input */
+
+/* Style for generic button */
+.button-style {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c5203d;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Style the hover effect for generic button */
+.button-style:hover {
+    background-color: #2f1d20;
 }
