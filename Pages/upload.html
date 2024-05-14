@@ -8,6 +8,18 @@
         />
         <link rel="stylesheet" href="/Pages/style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script>
+            window.addEventListener("message", function (event) {
+                if (event.origin !== "http://localhost:5500") {
+                    return;
+                }
+                const { accessToken } = event.data;
+                if (accessToken) {
+                    // Store access token in local storage
+                    localStorage.setItem("accessToken", accessToken);
+                }
+            });
+        </script>
     </head>
     <body>
         <!--Navigation Bar-->
@@ -29,11 +41,48 @@
             onchange="previewImage()"
         />
         <button class="middle-button-style" onclick="uploadFile()">Send</button>
-        <img id="previewImage" style="display: none; max-width: 300px" />
+        <img
+            id="previewImage"
+            class="centered-image"
+            style="display: none; max-width: 300px"
+        />
 
         <button class="button-style" onclick="signInWithMicrosoft()">
             Click here to sign in with Microsoft
         </button>
+
+        <!-- Logout button -->
+        <button class="button-style" onclick="logout()">Log out</button>
+        <h1>Access Token:</h1>
+        <div id="accessTokenDisplay"></div>
+    
+        <script>
+            // Function to update the access token display
+            function updateAccessTokenDisplay() {
+                // Retrieve access token from local storage
+                var accessToken = localStorage.getItem("accessToken");
+    
+                // Check if access token is defined
+                if (accessToken !== null) {
+                    // Display the access token on the screen
+                    document.getElementById("accessTokenDisplay").innerText = accessToken;
+                } else {
+                    // If access token is not defined, display a message
+                    document.getElementById("accessTokenDisplay").innerText = "Access token is not set.";
+                }
+            }
+    
+            // Call the function initially to display the access token
+            updateAccessTokenDisplay();
+    
+            // Listen for changes in local storage (e.g., when access token is updated)
+            window.addEventListener("storage", function(event) {
+                if (event.key === "accessToken") {
+                    // Update the access token display
+                    updateAccessTokenDisplay();
+                }
+            });
+        </script>
 
         <!-- Access Token Field (Hidden) -->
         <input type="hidden" id="accessToken" />
@@ -73,9 +122,12 @@
                     var formData = new FormData();
                     formData.append("file", file);
 
-                    // Include access token in the request header
-                    var accessToken =
-                        document.getElementById("accessToken").value; // Access token obtained after authentication
+                    // Retrieve access token from local storage
+                    var accessToken = localStorage.getItem("accessToken");
+                    if (!accessToken) {
+                        alert("Access token not found. Please sign in again.");
+                        return;
+                    }
                     fetch(
                         "https://graph.microsoft.com/v1.0/me/drive/root:/Photos/" +
                             file.name +
@@ -101,7 +153,6 @@
                 }
             }
 
-            // Function to preview the selected image
             function previewImage() {
                 var fileInput = document.getElementById("fileInput");
                 var file = fileInput.files[0];
@@ -115,6 +166,16 @@
                     };
                     reader.readAsDataURL(file);
                 }
+            }
+
+            function logout() {
+                // Clear access token from local storage
+                localStorage.removeItem("accessToken");
+                // Open the logout endpoint in a new window
+                window.open(
+                    "https://login.microsoftonline.com/common/oauth2/v2.0/logout" +
+                        "?post_logout_redirect_uri=http://localhost:5500/Pages/logout.html"
+                ); // Replace with your logout redirect URI
             }
         </script>
     </body>

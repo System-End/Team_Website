@@ -794,36 +794,6 @@ input[type="submit"]:hover {
 }*/
 
 /*Upload Page*/
-.container {
-    margin: 50px auto;
-    width: 80%;
-    text-align: center;
-}
-.upload-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #c5203d;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px; /* Optional, for rounded corners */
-}
-.up-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #c5203d;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px; /* Optional, for rounded corners */
-}
-input[type="file"] {
-    display: none;
-}
-#uploaded-image {
-    max-width: 500px;
-    margin-top: 20px;
-}
 
 /* Style the button to look like a file input */
 .file-input-button {
@@ -864,7 +834,7 @@ input[type="file"] {
 /* Style the hover effect for generic button */
 .button-style:hover {
     background-color: #ff4d6d;
-}   
+}
 .middle-button-style {
     display: inline-block;
     padding: 10px 20px;
@@ -875,6 +845,15 @@ input[type="file"] {
     border-radius: 5px;
     text-align: center;
     transition: background-color 0.3s ease;
-    font-size: 20px; /* Adjust font size */   
+    font-size: 20px; /* Adjust font size */
     font-weight: bold;
+}
+.middle-button-style:hover {
+    background-color: #372222;
+}
+
+/* Center the image */
+.centered-image {
+    display: block;
+    margin: 0 auto;
 }
