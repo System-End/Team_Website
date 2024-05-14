@@ -25,7 +25,7 @@
             function signInWithMicrosoft() {
                 window.open(
                     "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?" +
-                        "client_id=c91a3691-c800-4aed-9e85-1a2c896327de" + // Replace with your client ID
+                        "client_id=YOUR_CLIENT_ID" + // Replace with your client ID
                         "&response_type=code" +
                         "&redirect_uri=http://localhost:5500/Pages/Callback.html" + // Replace with your redirect URI
                         "&scope=openid%20offline_access%20Files.ReadWrite.All",
@@ -88,11 +88,15 @@
     <body>
         <!--Navigation Bar-->
         <div id="navbar"></div>
+        <h1></h1>
         <h1>Upload Photos to OneDrive</h1>
+
+        <label for="fileInput" style="cursor: pointer">Choose File</label>
         <input
             type="file"
             id="fileInput"
             accept="image/*"
+            style="display: none"
             onchange="previewImage()"
         />
         <button onclick="uploadFile()">Upload</button>
