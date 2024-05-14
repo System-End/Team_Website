@@ -826,11 +826,10 @@ input[type="file"] {
 }
 
 /* Style the button to look like a file input */
-
-/* Style for generic button */
-.button-style {
+.file-input-button {
     display: inline-block;
     padding: 10px 20px;
+    margin: 10px;
     background-color: #c5203d;
     color: #000;
     border: none;
@@ -838,9 +837,44 @@ input[type="file"] {
     border-radius: 5px;
     text-align: center;
     transition: background-color 0.3s ease;
+    font-size: 14px; /* Adjust font size */
+}
+
+/* Style the hover effect */
+.file-input-button:hover {
+    background-color: #ff4d6d;
+}
+
+/* Style for generic button */
+.button-style {
+    display: inline-block;
+    padding: 10px 20px;
+    /*margin: 3px;*/
+    background-color: #c5203d;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-size: 20px; /* Adjust font size */
+    font-weight: bold;
 }
 
 /* Style the hover effect for generic button */
 .button-style:hover {
-    background-color: #2f1d20;
+    background-color: #ff4d6d;
+}   
+.middle-button-style {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #382e2e;
+    color: #c5203d;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-size: 20px; /* Adjust font size */   
+    font-weight: bold;
 }
