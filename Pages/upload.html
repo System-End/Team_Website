@@ -89,9 +89,9 @@
         <!--Navigation Bar-->
         <div id="navbar"></div>
         <h1></h1>
-        <h1>Upload Photos to OneDrive</h1>
+        <h1>Upload Photos</h1>
 
-        <label for="fileInput" style="cursor: pointer">Choose File</label>
+        <button for="fileInput" class = ".upload-btn">Choose File to Upload</button>
         <input
             type="file"
             id="fileInput"
@@ -99,10 +99,10 @@
             style="display: none"
             onchange="previewImage()"
         />
-        <button onclick="uploadFile()">Upload</button>
+        <button onclick="uploadFile()">Send</button>
         <img id="previewImage" style="display: none; max-width: 300px" />
         <a href="#" onclick="signInWithMicrosoft()"
-            >Click here to sign in with Microsoft</a
+            ><button>Click here to sign in with Microsoft</button></a
         >
 
         <!-- Access Token Field (Hidden) -->
