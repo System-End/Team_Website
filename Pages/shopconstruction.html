@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/Resources/Favicons/favicon.png"
+        />
+        <link rel="stylesheet" href="/Pages/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+                fetch("/Pages/navbar.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("navbar").innerHTML = data;
+                    });
+                fetch("/Pages/socials.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("socials").innerHTML = data;
+                    });
+            });
+        </script>
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <div id="navbar"></div>
+
+        <!-- Body -->
+        <div class="Title-Container">
+            <h1 class="page-title" style="width: 100%; text-align: center">
+                Shop
+            </h1>
+            <img
+                src="/Resources/Icons/team-icon.png"
+                id="TeamIcon"
+                alt="Team Icon"
+            />
+        </div>
+
+        <div class="UnderConstruction">
+            This section is under construction...
+        </div>
+
+        <!-- Footer -->
+        <div id="socials"></div>
+    </body>
+</html>
