@@ -769,3 +769,33 @@ input[type="submit"]:hover {
         background: rgb(163, 47, 47);
     }
 }*/
+
+
+/*Upload Page*/
+.container {
+    margin: 50px auto;
+    width: 80%;
+    text-align: center;
+}
+.upload-btn {
+    padding: 10px 20px;
+    background-color: #c5203d;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Optional, for rounded corners */
+}
+.up-btn {
+    padding: 10px 20px;
+    background-color: #c5203d;
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px; /* Optional, for rounded corners */
+}
+input[type="file"] {
+    display: none;
+}
+#uploaded-image {
+    max-width: 500px;
+    margin-top: 20px;
+}
