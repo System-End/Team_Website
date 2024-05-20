@@ -19,9 +19,10 @@
                     },
                     body: new URLSearchParams({
                         client_id: "c91a3691-c800-4aed-9e85-1a2c896327de",
-                        scope: "Files.ReadWrite.All",
+                        scope: "openid offline_access Files.ReadWrite.All",
                         code: code,
-                        redirect_uri: "http://localhost:5500/Pages/upload.html",
+                        redirect_uri:
+                            "http://localhost:5500/Pages/Callback.html",
                         grant_type: "authorization_code",
                         client_secret: "ddba6e4e-62b1-4a13-b165-08b00ef6723f",
                     }),
