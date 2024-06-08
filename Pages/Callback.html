@@ -10,26 +10,17 @@
             const code = urlParams.get("code");
 
             // Exchange the authorization code for an access token
-            fetch(
-                "https://showcaseserver.azurewebsites.net/api/ExchangeTokenFunction",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ code: code }),
-                }
-            )
+            fetch("/Pages/ExchangeTokenFunction", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ code: code }),
+            })
                 .then((response) => response.json())
                 .then((data) => {
-                    // Save the access token and optionally the refresh token in the parent window
-                    window.opener.postMessage(
-                        {
-                            accessToken: data.access_token,
-                            refreshToken: data.refresh_token,
-                        },
-                        "http://localhost:5500"
-                    );
+                    // Save the access token in local storage
+                    localStorage.setItem("accessToken", data.access_token);
                     // Close the callback window
                     window.close();
                 })
