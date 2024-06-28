@@ -1,33 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Authorization Callback</title>
-        <script>
-            // Parse the authorization code from the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const code = urlParams.get("code");
+<html>
+<head>
+    <title>OAuth 2.0 Callback</title>
+    <script>
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let m;
+            while (m = regex.exec(queryString)) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+            return params;
+        }
 
-            // Exchange the authorization code for an access token
-            fetch("/Pages/ExchangeTokenFunction", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ code: code }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    // Save the access token in local storage
-                    localStorage.setItem("accessToken", data.access_token);
-                    // Close the callback window
+        window.onload = function() {
+            const params = getQueryParams();
+            const code = params['code'];
+
+            if (code) {
+                // Exchange authorization code for access token
+                fetch('https://oauth2.googleapis.com/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        code: code,
+                        client_id: 'YOUR_CLIENT_ID',
+                        client_secret: 'YOUR_CLIENT_SECRET',
+                        redirect_uri: 'https://username.github.io/Pages/callback.html',
+                        grant_type: 'authorization_code'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const accessToken = data.access_token;
+                    // Send the access token back to the main page
+                    window.opener.postMessage({ accessToken: accessToken }, window.location.origin);
                     window.close();
                 })
-                .catch((error) => console.error("Error:", error));
-        </script>
-    </head>
-    <body>
-        <p>Authorization successful. You can close this window.</p>
-    </body>
+                .catch(error => console.error('Error exchanging authorization code:', error));
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>OAuth 2.0 Callback</h1>
+    <p>Handling OAuth 2.0 response...</p>
+</body>
 </html>
