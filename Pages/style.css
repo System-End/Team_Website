@@ -1,13 +1,9 @@
 @font-face {
     font-family: OpenSans;
     src: url("../Resources/openSans.ttf");
-    font-family: OpenSans;
-    src: url("../Resources/openSans.ttf");
 }
 
 html {
-    background-color: #e0e0e0;
-    font-family: OpenSans;
     background-color: #e0e0e0;
     font-family: OpenSans;
 }
@@ -40,152 +36,10 @@ body {
     background-color: #f1f1f1;
 }
 
-/* Navigation Bar */
-#nav-bar {
-    position: fixed;
-    z-index: 110;
-    background-color: #f1f1f1;
-    width: calc(100vw);
-    border-bottom: 1px solid;
-    border-bottom-color: #000;
-    margin: 0;
-    font-size: 1rem;
-}
-#nav-bar::after {
-    color: #000;
-}
-#nav-bar ul {
-    list-style: none;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-#nav-bar ul li {
-    display: inline-block;
-}
-#nav-bar ul li a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    color: #141415;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-#nav-bar ul li nav.dropdown-content {
-    position: fixed;
-    top: 50;
-}
-#nav-bar ul li nav.dropdown-content::before {
-    position: absolute;
-    left: 50%;
-    top: auto;
-    width: 0;
-    height: 0;
-    border: solid transparent;
-    content: "";
-}
-#nav-logo {
-    width: calc(3.5vw);
-    vertical-align: middle;
-    padding-right: 30%;
-    display: none;
-}
-
-nav.fill ul .nav-button {
-    justify-content: right;
-}
-
-/* Hide Dropdown */
-nav.fill ul .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    border-color: #000;
-    border: 1px solid;
-    z-index: 110;
-}
-
-/* Dropdown Text */
-nav.fill ul .dropdown-content a {
-    color: #f1f1f1;
-}
-
-/* Hover over dropdown text */
-nav.fill ul .dropdown-content a:hover {
-    color: #000;
-}
-
-/* Show dropdown on hover */
-nav.fill ul #home-dropdown:hover #home-dropdown-content {
-    display: block;
-    text-align: center;
-    font-size: small;
-    z-index: 110;
-    width: calc(10vw);
-}
-
-/* Show dropdown on hover */
-nav.fill ul #donate-dropdown:hover #donate-dropdown-content {
-    display: block;
-    text-align: center;
-    z-index: 110;
-    width: calc(10vw);
-}
-
-/* Show dropdown on hover */
-nav.fill ul #Accomplishments-dropdown:hover #Accomplishments-dropdown-content {
-    display: block;
-    text-align: center;
-    z-index: 110;
-    width: calc(10vw);
-}
-
-nav ul li a,
-nav ul li a:after,
-nav ul li a:before {
-    transition: all 0.2s;
-}
-nav ul li a:hover {
-    color: #000000;
-}
-
-nav.fill ul li a:after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 0%;
-    content: ".";
-    margin: 0;
-    opacity: 0;
-    color: transparent;
-    background: #aaa;
-    height: 1px;
-}
-nav.fill ul li a {
-    transition: all 1s;
-}
-nav.fill ul li a:hover {
-    color: #c3153a;
-    z-index: 1;
-}
-nav.fill ul li a:hover:after {
-    z-index: -10;
-    animation: fill 0.5s forwards;
-    -webkit-animation: fill 1s forwards;
-    -moz-animation: fill 1s forwards;
-    opacity: 1;
-}
-
-nav.fill ul li[tabindex]:hover .dropdown-content,
-nav.fill ul li[tabindex]:focus .dropdown-content {
-    display: block;
-}
-
 main {
     width: 100%;
     background-color: #f1f1f1;
-    z-index: 100;
+    z-index: 10;
 }
 
 /* Logo + Background Image */
@@ -200,7 +54,7 @@ main {
 
 .logo-container #Logo-Image {
     position: fixed;
-    z-index: 80;
+    z-index: 1;
     width: auto;
     height: auto;
     max-width: calc(60vw);
@@ -209,7 +63,7 @@ main {
 
 .logo-container #Background-Image {
     position: fixed;
-    z-index: 50;
+    z-index: 0;
     width: calc(100vw);
     height: calc(100vh);
     object-fit: cover;
@@ -344,7 +198,7 @@ main {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
+    z-index: 30;
     background: #fff;
     border: 1px solid #ccc;
     padding: 10px;
@@ -392,7 +246,7 @@ main {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
+    z-index: 30;
     background: #fff;
     border: 1px solid #ccc;
     padding: 10px;
@@ -412,29 +266,15 @@ main {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-/*Upload Page*/
-.container {
-    margin: 50px auto;
-    width: 80%;
-    text-align: center;
-}
-.upload-btn {
-    padding: 10px 20px;
-    background-color: #c5203d;
-    color: #000;
+#shopIframe {
+    width: 100%;
     border: none;
-    cursor: pointer;
-    border-radius: 5px; /* Optional, for rounded corners */
-}
-input[type="file"] {
-    display: none;
-}
-#uploaded-image {
-    max-width: 500px;
-    margin-top: 20px;
 }
 
+#iframeContainer {
+    height: 100%;
+    overflow: auto;
+}
 /*Mobile*/
 @media screen and (max-width: 1000px) {
     /* comes into effect for screens larger than or equal to 481 pixels */
@@ -623,237 +463,4 @@ h2 {
     margin-bottom: 10vh;
     display: flex;
     justify-content: center;
-}
-
-/* shop css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-h1 {
-    text-align: center;
-    color: #333;
-}
-h2 {
-    margin-top: 20px;
-    color: #333;
-}
-.products {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-.product {
-    flex-basis: 45%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.product img {
-    max-width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-input[type="number"] {
-    width: calc(50% - 5px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-.order-summary {
-    margin-top: 30px;
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
-}
-#order-summary {
-    font-weight: bold;
-}
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-h1 {
-    text-align: center;
-    color: #333;
-}
-h2 {
-    margin-top: 20px;
-    color: #333;
-}
-.products {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-.product {
-    flex-basis: 45%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.product img {
-    max-width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-input[type="number"] {
-    width: calc(50% - 5px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-.order-summary {
-    margin-top: 30px;
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
-}
-#order-summary {
-    font-weight: bold;
-}
-/* end shop css */
-/*@-webkit-keyframes fill {
-    0% {
-        width: 0%;
-        height: 1px;
-    }
-    50% {
-        width: 100%;
-        height: 1px;
-    }
-    100% {
-        width: 100%;
-        height: 100%;
-        background: rgb(163, 47, 47);
-    }
-}*/
-
-/*Upload Page*/
-
-/* Style the button to look like a file input */
-.file-input-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #c5203d;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    font-size: 14px; /* Adjust font size */
-}
-
-/* Style the hover effect */
-.file-input-button:hover {
-    background-color: #ff4d6d;
-}
-
-/* Style for generic button */
-.button-style {
-    display: inline-block;
-    padding: 10px 20px;
-    /*margin: 3px;*/
-    background-color: #c5203d;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    font-size: 20px; /* Adjust font size */
-    font-weight: bold;
-}
-
-/* Style the hover effect for generic button */
-.button-style:hover {
-    background-color: #ff4d6d;
-}
-.middle-button-style {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #382e2e;
-    color: #c5203d;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    font-size: 20px; /* Adjust font size */
-    font-weight: bold;
-}
-.middle-button-style:hover {
-    background-color: #372222;
-}
-
-/* Center the image */
-.centered-image {
-    display: block;
-    margin: 0 auto;
 }

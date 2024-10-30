@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <link rel="icon" type="image/x-icon" href="/Resources/Favicons/favicon.png"/>
-    <link rel="stylesheet" href="/Pages/style.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <div id="navbar"></div>
-    <div class="Title-Container">
-        <h1 class="page-title" style="width: 100%; text-align: center">Upload Photos</h1>
-        <img src="/Resources/Icons/team-icon.png" id="TeamIcon" alt="Team Icon"/>
-    </div>
+    <head>
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/Resources/Favicons/favicon.png"
+        />
+        <link rel="stylesheet" href="/Pages/style.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <form id="uploadForm">
-        <button class="button-style" onclick="document.getElementById('fileInput').click()" type="button">
-            Choose File to Upload
-        </button>
-        <input type="file" id="fileInput" accept="image/*" style="display: none"/>
-        <button class="middle-button-style" type="submit">Send</button>
-    </form>
+        <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+                fetch("/Pages/navbar.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("navbar").innerHTML = data;
+                    });
+                fetch("/Pages/socials.html")
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("socials").innerHTML = data;
+                    });
+            });
+        </script>
+    </head>
 
-    <div id="fileNameDisplay"></div>
-    <img id="filePreview" style="max-width: 100%; display: block; margin-top: 10px;"/>
+    <body>
+        <!--Navigation Bar-->
+        <div id="navbar"></div>
+        <h1></h1>
+        <h1></h1>
+        <h1>Upload Photos and Videos</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" multiple />
+            <button type="submit">Upload</button>
+        </form>
 
-    <button class="button-style" onclick="signInWithGoogle()">Click here to sign in with Google</button>
-    <button class="button-style" onclick="logout()">Log out</button>
-
-    <!-- Access Token Display -->
-    <h1>Access Token:</h1>
-    <div id="accessTokenDisplay"></div>
-
-    <!-- Footer -->
-    <div id="socials"></div>
-</body>
+        <script src="/Pages/upload.js"></script>
+        <!-- Footer -->
+        <div id="socials"></div>
+    </body>
 </html>
